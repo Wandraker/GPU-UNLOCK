@@ -1,5 +1,20 @@
 # Changes
 
+## GPU-UNLOCK (Wandraker) — RTX 3070 `10de:2484` local profiles, 2026-10-28
+
+Modifications to impacifist/Windows-GPU-UNLOCK by Wandraker:
+
+- Admit `10de:2484` (RTX 3070, GA104, 8 GiB) in the generic probe deep read,
+  the GA104 family catalog and the local-profile envelope (`proven.json`).
+- Move the generator's "unproven chip" refusal case from GA104 to GA106.
+- Add `-Card 3070` to the benchmark build/run/compare tools.
+- Add `docs/RTX3070.ru.md` / `docs/RTX3070.en.md`; the upstream README moves to
+  `README.upstream.md`.
+- Hardware evidence: one machine (Zotac RTX 3070 / Gigabyte B460M D2VX SI BIOS FE,
+  no iGPU, headless USB route): `FINAL status=0 clean=1`, SS0 `0x88888888`,
+  SS1 `0x8`; cuBLAS FP16/BF16 38.8 → 73.4 TFLOPS, TF32 18.1 → 38.1 TFLOPS.
+  Not a reviewed upstream profile.
+
 ## Unreleased — preserve valid late PCIe capability layouts
 
 - Match PCI configuration save bounds to the existing parser: aligned PCIe v1

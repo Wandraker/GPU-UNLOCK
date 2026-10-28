@@ -162,7 +162,8 @@ static VOID DumpProm(CAPTURE *c,EFI_FILE_PROTOCOL *root,UINT8 *page) {
  * All allocation/protocol calls finish before the final identity/config recheck. */
 static BOOLEAN ProbeEnvelope(CAPTURE *c,EFI_PCI_IO_PROTOCOL *io,const UINT32 *cfg) {
 #ifdef GU_PROBE_GENERIC
-  BOOLEAN identity=cfg[0]==0x220410deU || cfg[0]==0x220310deU;
+  /* LOCAL: RTX 3070 GA104 (same chip/VRAM as the reviewed 3070 Ti profile). */
+  BOOLEAN identity=cfg[0]==0x220410deU || cfg[0]==0x220310deU || cfg[0]==0x248410deU;
 #else
   BOOLEAN identity=cfg[0]==GU_BOARD_ID && cfg[11]==GU_BOARD_SUBSYSTEM;
 #ifdef GU_BAR0_BASE

@@ -101,8 +101,9 @@ def main():
     case('single capture', 'at least', lambda w, d: [p.unlink() for p in d[:-1]])
     case('captures disagree', 'disagree on GU_PROM_SHA256',
          lambda w, d: sub(d[0], r'^(prom sha256=)[0-9a-f]{64}', lambda m: m[1] + '0' * 64))
+    # LOCAL: GA104 is admitted for the 3070 profile; GA106 stays outside the envelope.
     case('unproven chip', 'no hardware-proven profile',
-         lambda w, d: sub(d[-1], r'^(mmio off=0x00000000 status=0x0+ value=0x)[0-9a-f]{8}', hexword(0xb74000a1)))
+         lambda w, d: sub(d[-1], r'^(mmio off=0x00000000 status=0x0+ value=0x)[0-9a-f]{8}', hexword(0xb76000a1)))
     case('unproven memory size', 'not hardware-proven',
          lambda w, d: sub(d[-1], r'^(mmio off=0x001183a4 status=0x0+ value=0x)[0-9a-f]{8}', hexword(0x2800)))
     case('already unlocked', 'power-on state',
